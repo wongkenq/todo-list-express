@@ -1,6 +1,8 @@
+/* style for h1, sets color to red */
 h1{
     color: red;
 }
+/* style for class completed, set color to gray and line-through decoration */
 .completed{
     color: gray;
     text-decoration: line-through;
