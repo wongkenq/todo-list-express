@@ -1,23 +1,37 @@
+// load express module
 const express = require('express')
+// declare variable to use express()
 const app = express()
+// load MongoClient for MongoDB
 const MongoClient = require('mongodb').MongoClient
+// declare which port to use
 const PORT = 2121
+// load dotenv
 require('dotenv').config()
 
-
+// declare variables
 let db,
+// mongo connection string is is another file to hide it, this variable calls that file containing the string
     dbConnectionStr = process.env.DB_STRING,
+// declare name for DB
     dbName = 'todo'
 
+// load mongo, connect to the DB using the connection string
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+// after connection is successful log to console that connection is successful
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
+        // assign value to the db variable
         db = client.db(dbName)
     })
     
+// load express method to set view engine to ejs
 app.set('view engine', 'ejs')
+// load express method to set static folder to 'public'
 app.use(express.static('public'))
+// load express method to parse the URL encoded data with qs library, allows for rich objects and arrays to be encoded in to URL-encoded format
 app.use(express.urlencoded({ extended: true }))
+// load express method to parse incoming requests as JSON
 app.use(express.json())
 
 
