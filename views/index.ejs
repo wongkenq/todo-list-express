@@ -20,6 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- for loop in ejs. iterates through array called items. then does a conditional. if an element in the array == completed, then it will add the class 'completed' to it makes it a list item in an unordered list. else does the same, minus added the class -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,10 +33,12 @@
     <% } %>
     </ul>
 
+    <!-- ejs to add into the h2 element the number of items left to do -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- submits POST request to backend and routing request to /addTodo -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
